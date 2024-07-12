@@ -1,0 +1,129 @@
+#! c:/Program Files/Nuke11.3v6/nuke-11.3.6.dll -nx
+version 11.3 v6
+Gizmo {
+}
+ Input {
+  inputs 0
+  name Input1
+  xpos 206
+  ypos 151
+ }
+ Dot {
+  name Dot1
+  xpos 240
+  ypos 191
+ }
+set N2b51e400 [stack 0]
+ Shuffle {
+  red black
+  green black
+  alpha black
+  name Shuffle3
+  xpos 338
+  ypos 187
+ }
+ LensDistortion {
+  serializeKnob ""
+  serialiseKnob "22 serialization::archive 14 0 0 0 0 0 0 0 0 0 0 0 0"
+  distortion1 0.002
+  cardScale {1.002007961 1.002007961 1}
+  a -0.0002225013013
+  b -0.00144365977
+  c -0.0004541163798
+  name LensDistortion2
+  xpos 338
+  ypos 213
+ }
+ Transform {
+  scale {1.003 1.005}
+  center {960 409}
+  name Transform2
+  xpos 338
+  ypos 271
+ }
+ Blur {
+  size 3
+  invert_mask true
+  name Blur4
+  xpos 338
+  ypos 342
+ }
+push 0
+push $N2b51e400
+ Shuffle {
+  green black
+  blue black
+  alpha black
+  name Shuffle1
+  xpos 80
+  ypos 187
+ }
+ LensDistortion {
+  serializeKnob ""
+  serialiseKnob "22 serialization::archive 14 0 0 0 0 0 0 0 0 0 0 0 0"
+  distortion1 -0.002
+  cardScale {0.9980079532 0.9980079532 1}
+  a 0.0004563995462
+  b 0.001048351405
+  c 0.000496027933
+  name LensDistortion1
+  xpos 80
+  ypos 213
+ }
+ Blur {
+  size 3
+  invert_mask true
+  name Blur3
+  xpos 80
+  ypos 342
+ }
+push $N2b51e400
+ Shuffle {
+  in2 rgba
+  red black
+  blue black
+  alpha alpha2
+  name Shuffle2
+  xpos 206
+  ypos 218
+ }
+ Merge2 {
+  inputs 3+1
+  operation plus
+  output rgb
+  name Merge1
+  xpos 206
+  ypos 348
+ }
+ Colorspace {
+  colorspace_out YCbCr
+  name Colorspace3
+  xpos 206
+  ypos 435
+ }
+ Blur {
+  channels {-rgba.red rgba.green rgba.blue none}
+  size 10
+  name Blur1
+  xpos 206
+  ypos 461
+ }
+ Blur {
+  channels {rgba.red -rgba.green -rgba.blue none}
+  size 2
+  name Blur2
+  xpos 206
+  ypos 499
+ }
+ Colorspace {
+  colorspace_in YCbCr
+  name Colorspace4
+  xpos 206
+  ypos 537
+ }
+ Output {
+  name Output1
+  xpos 206
+  ypos 637
+ }
+end_group
